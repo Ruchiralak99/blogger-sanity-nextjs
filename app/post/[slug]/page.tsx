@@ -3,6 +3,9 @@ import { urlFor } from "../../sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 
+
+export const revalidate = 60; // තත්පර 60කට වරක් අලුත් දත්ත තිබේදැයි බලන්න
+export const dynamic = "force-dynamic";
 // params Promise එකක් විදියට define කරන්න
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   
