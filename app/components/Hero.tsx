@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Transition, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -93,7 +93,8 @@ export default function TechHero() {
   const pauseAutoPlay = () => setIsAutoPlaying(false);
   const resumeAutoPlay = () => setIsAutoPlaying(true);
 
-  const slideVariants = {
+  // Fixed: Properly typed variants with specific transition type
+  const slideVariants: Variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
@@ -106,10 +107,10 @@ export default function TechHero() {
       scale: 1,
       transition: {
         duration: 0.8,
-        type: "spring",
+        type: "spring" as const, // Fixed: Use const assertion for type
         stiffness: 300,
         damping: 30
-      }
+      } as Transition
     },
     exit: (direction: number) => ({
       zIndex: 0,
@@ -118,10 +119,10 @@ export default function TechHero() {
       scale: 0.8,
       transition: {
         duration: 0.8,
-        type: "spring",
+        type: "spring" as const, // Fixed: Use const assertion for type
         stiffness: 300,
         damping: 30
-      }
+      } as Transition
     })
   };
 
@@ -158,18 +159,18 @@ export default function TechHero() {
             key={index}
             className="absolute text-green-500/10 font-mono text-sm whitespace-nowrap"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
             }}
             animate={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
               rotate: Math.random() * 360,
             }}
             transition={{
               duration: 20 + Math.random() * 10,
               repeat: Infinity,
-              repeatType: "reverse",
+              repeatType: "reverse" as const, // Fixed: Use const assertion
             }}
           >
             {snippet}
