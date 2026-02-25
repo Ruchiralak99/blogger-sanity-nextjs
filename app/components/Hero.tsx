@@ -215,8 +215,8 @@ export default function TechHero() {
               <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent" />
               
               {/* Content */}
-              <div className="absolute inset-0 flex items-center mt-20 ml-24">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="absolute inset-0 flex items-center mt-20 lg:ml-24 p-16">
+                <div className="container mx-auto px-4 sm:px-4 lg:px-8">
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
